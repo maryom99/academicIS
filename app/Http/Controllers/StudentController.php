@@ -30,7 +30,7 @@ class StudentController extends Controller
                 ->simplePaginate(3);
 
             //$student = Student::orderBy('id_student', 'asc')->simplePaginate(3);
-            
+
             return view('student.index', ['student'=> $student])
                 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -109,14 +109,5 @@ class StudentController extends Controller
         Student::where('nim', $nim)->delete();
         return redirect()->route('student.index')
         -> with('success', 'Student Successfully Deleted');
-    }
-    public function search()
-    {
-        $student = Student::query();
-        if (request('term')) {
-            $student->where('name', 'Like', '%' . request('term') . '%');
-        }
-
-        return $student->orderBy('id', 'asc')->paginate(3);
     }
 };
