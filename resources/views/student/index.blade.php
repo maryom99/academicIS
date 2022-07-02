@@ -9,6 +9,25 @@
             <div class="float-right my-2">
                 <a class="btn btn-success" href="{{ route('student.create') }}"> Input Student Data</a>
             </div>
+            <div class="float-left my-2">
+                <form action="{{ route('student.index') }}" method="GET" role="search">
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search student">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search student" id="term">
+                        <a href="{{ route('student.index') }}" class=" mt-1">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" title="Refresh page">
+                                    <span class="fas fa-sync-alt"></span>
+                                </button>
+                            </span>
+                        </a>
+                    </div>
+                </form> 
+            </div>
         </div>
     </div>
 
@@ -21,8 +40,10 @@
     <tr>
     <th>Nim</th>
     <th>Name</th>
+    <th>Date Of Birth</th>
     <th>Class</th>
     <th>Major</th>
+    <th>Address</th>
     <th width="280px">Action</th>
     </tr>
     @foreach ($student as $mhs)
@@ -30,8 +51,10 @@
 
     <td>{{ $mhs ->nim }}</td>
     <td>{{ $mhs ->name }}</td>
+    <td>{{ $mhs ->date_of_birth }}</td>
     <td>{{ $mhs ->class }}</td>
     <td>{{ $mhs ->major }}</td>
+    <td>{{ $mhs ->address }}</td>
     <td>
     <form action="{{ route('student.destroy',['student'=>$mhs->nim]) }}" method="POST">
 
@@ -47,4 +70,7 @@
     </tr>
     @endforeach
   </table>
+  <div class="pagination">
+    {!! $student->links() !!}
+
 @endsection

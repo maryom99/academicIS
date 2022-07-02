@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentTable extends Migration
-{
+class CreateStudentTable extends Migration {
     /**
      * Run the migrations.
      *
@@ -19,6 +18,8 @@ class CreateStudentTable extends Migration
             $table->string('name', 25)->index();
             $table->string('class', 5);
             $table->string('major', 35);
+            $table->string('address', 44);
+            $table->date('date_of_birth');
             $table->timestamps();
         });
     }
